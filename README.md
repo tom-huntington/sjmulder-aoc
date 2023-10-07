@@ -1,4 +1,4 @@
-# sjmulders advent of code visulaizations
+# Sijmen J. Mulder's advent of code visulaizations
 
 I was impressed with sjmulder's https://sjmulder.nl/2022/aoc-ffmpeg.html idea to pipe raw frames to ffmpeg for visualisation.
 
