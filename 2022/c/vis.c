@@ -16,6 +16,8 @@ vis_begin(
     char *filename,
     size_t fps, size_t w, size_t h)
 {
+	fprintf(stderr, "size: %ldx%ld\n", w, h);
+	#if 0
 	int fds[2], i;
 	char video_size[64], fps_str[32];
 
@@ -33,20 +35,19 @@ vis_begin(
 		filename,
 		NULL
 	};
-
-	assert(vis);
 	assert(filename);
+	assert(fps);
+#endif
+	assert(vis);
 	assert(w);
 	assert(h);
-	assert(fps);
 
 	vis->w = w;
 	vis->h = h;
 	vis->frame = malloc(w*h*3);
-
+#if 0
 	snprintf(video_size, sizeof(video_size), "%zux%zu", w, h);
 	snprintf(fps_str, sizeof(fps_str), "%zu", fps);
-
 	putchar('+');
 	for (i=0; argv[i]; i++)
 		printf(" %s", argv[i]);
@@ -69,6 +70,7 @@ vis_begin(
 
 	if (!(vis->ffmpeg_file = fdopen(fds[1], "w")))
 		err(1, "fdopen");
+#endif
 }
 
 void
@@ -135,16 +137,18 @@ vis_emit(struct vis *vis, size_t duration)
 
 	assert(vis);
 	assert(vis->frame);
-	assert(vis->ffmpeg_file);
+	//assert(vis->ffmpeg_file);
 
 	for (i=0; i < duration; i++)
 		fwrite(vis->frame, vis->w * vis->h *3, 1,
-		    vis->ffmpeg_file);
+		    // vis->ffmpeg_file
+			stdout);
 }
 
 void
 vis_end(struct vis *vis)
 {
+	#if 0
 	int status;
 
 	assert(vis);
@@ -159,6 +163,7 @@ vis_end(struct vis *vis)
 		errx(1, "ffmpeg exited with status %d", status);
 
 	memset(vis, 0, sizeof(*vis));
+	#endif
 }
 
 void

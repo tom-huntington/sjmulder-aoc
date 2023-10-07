@@ -1,7 +1,7 @@
 #include "common.h"
 
 #define SZY	48
-#define SZX	144
+#define SZX	145
 
 static char map[SZY][SZX];
 static int dist[SZY][SZX];

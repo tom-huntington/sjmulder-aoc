@@ -1,48 +1,17 @@
-Advent of Code
-==============
+# sjmulders advent of code visulaizations
 
-[![Build Status](https://dev.azure.com/sjmulder/aoc/_apis/build/status/aoc?branchName=master)](https://dev.azure.com/sjmulder/aoc/_build/latest?definitionId=6&branchName=master)
+I was impressed with sjmulder's https://sjmulder.nl/2022/aoc-ffmpeg.html idea to pipe raw frames to ffmpeg for visualisation.
 
-[Advent of Code](https://www.adventofcode.com) solutions by myself (Sijmen).
+I have modified his aoc solutions (days 14,18,20,22,23,24) to pipe to stdout. This allows the same code to be rendered to the screen in real time using https://github.com/tom-huntington/display-frames when you are debugging. And to a mp4 file when you are finished. Just change the shell commands!
 
-**2022**
+Instant debugging
+```
+./dayXX | displayframes --size {width}x{height}
+```
 
-                         1---------2-----
-                1234567890123456789012345
-    C           *************************
-    C#          ***
-    AWK         ** *
-    Rust        *
+Easy render
+```
+./dayXX | ffmpeg -loglevel warning -stats -f rawvideo -pixel_format rgb24 -video_size {width}x{height} -framerate 30 -i - -pix_fmt yuv420p dayXX.mp4
+```
 
-**2021**
-
-                         1---------2-----
-                1234567890123456789012345
-    C           ***********************.*
-    C++         ***
-    C#          **** ***    **
-    C64 BASIC   **              *
-    AWK          *                     .
-    Excel       **                     .
-    manually                          **
-    armv6 asm   **
-
-**2020**
-
-                         1---------2-----
-                1234567890123456789012345
-    C           *************************
-    C#           ** **   .
-    JavaScript                        *
-    C64 BASIC   *
-    awk          *.        **.
-    sh          *
-
-**2015**
-
-                         1---------2-----
-                1234567890123456789012345
-    C           ******************
-    C#                  *
-    awk                *
-    sh
+More in details 2022/c/README.md

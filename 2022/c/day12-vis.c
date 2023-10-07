@@ -7,7 +7,7 @@
 #define LEN(a)	(sizeof(a)/sizeof(*(a)))
 
 #define SZY	48
-#define SZX	144
+#define SZX	145
 
 #define VIS_CELL_SZ	20
 #define VIS_BORDER_SZ	2
@@ -157,6 +157,8 @@ main()
 
 	img_w = w*VIS_CELL_SZ + (w+1)*VIS_BORDER_SZ;
 	img_h = h*VIS_CELL_SZ + (h+1)*VIS_BORDER_SZ;
+	fprintf(stderr, "my print: %d %d", img_w, img_h);
+	//return 1;
 
 	for (y=0; y<h; y++)
 	for (x=0; x<w; x++) {
@@ -170,7 +172,7 @@ main()
 
 	dist[ey][ex] = 0;
 
-	ffmpeg_file = open_ffmpeg();
+	ffmpeg_file = stdout; //open_ffmpeg();
 	emit_frame();
 
 	do {
@@ -184,6 +186,7 @@ main()
 	for (i=0; i<30; i += VIS_FRAME_TIME)
 		emit_frame();
 
+#if 0
 	fclose(ffmpeg_file);
 
 	while (wait(&status) != -1)
@@ -191,6 +194,6 @@ main()
 			warnx("child exited with status %d\n", status);
 	if (errno != ECHILD)
 		err(1, "wait");
-
+#endif
 	return 0;
 }

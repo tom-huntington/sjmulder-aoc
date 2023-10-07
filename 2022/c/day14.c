@@ -1,5 +1,6 @@
 #include "common.h"
 
+#define WITH_VIS
 #ifdef WITH_VIS
 #include <stdint.h>
 #include <unistd.h>
@@ -22,7 +23,7 @@ dump(void)
 {
 	int x,y;
 
-	printf(" x=%d..%d y=0..%d\n", xmin,xmax, ymax);
+	//printf(" x=%d..%d y=0..%d\n", xmin,xmax, ymax);
 
 	for (y=0; y <= ymax+1; y++) {
 		for (x = xmin-1; x <= xmax+1; x++)
@@ -108,7 +109,6 @@ void
 vis14_begin(void)
 {
 	vis_grid.h = ymax+2;
-
 	vis_begin(&vis, "day14.mp4", 120,
 	    vis_grid.w * vis_grid.cell_sz,
 	    vis_grid.h * vis_grid.cell_sz);
@@ -154,7 +154,7 @@ main(int argc, char **argv)
 	}
 
 	vis14_end();
-	printf("14: %d %d\n", p1, p2);
+	//printf("14: %d %d\n", p1, p2);
 
 	return 0;
 }

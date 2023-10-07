@@ -2,8 +2,8 @@ struct vis {
 	uint8_t *frame;
 	size_t w, h;
 
-	pid_t ffmpeg_pid;
-	FILE *ffmpeg_file;
+	//pid_t ffmpeg_pid;
+	//FILE *ffmpeg_file;
 };
 
 struct vis_grid {
